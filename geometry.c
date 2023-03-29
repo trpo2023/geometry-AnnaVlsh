@@ -4,8 +4,7 @@
 #include <string.h>
 #include <ctype.h>
 #include <math.h>
-
-#define _USE_MATH_DEFINES
+#define pi 3.1415
 
 int main()
 {
@@ -40,11 +39,11 @@ int main()
     }
 
     if (object[0] == 'c') {
-      for (i = 0; isalpha(object[i]) != 0; i++) {
+        for (i = 0; isalpha(object[i]) != 0; i++) {
             if (object[i] != circle[i]) {
                 for (int k = 0; k < i; k++) printf(" ");
                 printf("^\n");
-                printf("Error at column %d: expected 'circle'\n", i+1);
+                printf("Error at column %d: expected 'circle'\n", i + 1);
                 return 2;
             }
         }
@@ -67,8 +66,8 @@ int main()
                 comma_counter++;
             }
         }
-        if (bracket_open != 1) { 
-            for (int k = 0; k < error_bracket_open-1; k++) printf(" ");
+        if (bracket_open != 1) {
+            for (int k = 0; k < error_bracket_open - 1; k++) printf(" ");
             printf("^\n");
             printf("Error at column %d: expected '('", error_bracket_open);
             return 1;
@@ -84,7 +83,7 @@ int main()
             return 5;
         }
 
-        
+
 
         for (int j = 0; object[i] != ' '; j++) {
             if (object[i] == ')') {
@@ -98,12 +97,13 @@ int main()
         }
 
         x_num = atof(x);
-int indexX = index;
+
+        int indexX = index;
         for (int j = 0, point = 0, minus = 0; j < index; j++) {
             if (x[0] == '.') {
                 for (int k = 0; k < strlen(circle) + 1; k++) printf(" ");
                 printf("^\n");
-                printf("Error at collum %d: expected '<double>'\n", strlen(circle) + 2);
+                printf("Error at collum %ld: expected '<double>'\n", strlen(circle) + 2);
                 return 3;
             }
             if (x[j] == '.')
@@ -111,12 +111,12 @@ int indexX = index;
             if (x[j] == '-')
                 minus++;
             if (isalpha(x[j]) != 0) {
-                for (int k = 0; k < i-1; k++)printf(" ");
+                for (int k = 0; k < i - 1; k++)printf(" ");
                 printf("^\n");
                 printf("Error at collum %d: expected '<double>'\n", i);
                 return 3;
             }
-            if (point > 1  minus > 1) {
+            if (point > 1 || minus > 1) {
                 for (int k = 0; k < i - 1; k++)printf(" ");
                 printf("^\n");
                 printf("Error at collum %d: expected '<double>'\n", i);
@@ -134,16 +134,16 @@ int indexX = index;
             }
             index = j;
         }
-        
+
         y_num = atof(y);
 
 
 
         for (int j = 0, point = 0, minus = 0; j < index; j++) {
             if (y[0] == '.') {
-                for (int k = 0; k < strlen(circle) + indexX + 2;k++) printf(" ");
+                for (int k = 0; k < strlen(circle) + indexX + 2; k++) printf(" ");
                 printf("^\n");
-                printf("Error at collum %d: expected '<double>'\n", strlen(circle) + indexX + 3);
+                printf("Error at collum %ld: expected '<double>'\n", strlen(circle) + indexX + 3);
                 return 3;
             }
             if (y[j] == '.')
@@ -156,7 +156,7 @@ int indexX = index;
                 printf("Error at collum %d: expected '<double>'\n", i);
                 return 3;
             }
-            if (point > 1  minus > 1) {
+            if (point > 1 || minus > 1) {
                 for (int k = 0; k < i - 1; k++)printf(" ");
                 printf("^\n");
                 printf("Error at collum %d: expected '<double>'\n", i);
@@ -171,14 +171,14 @@ int indexX = index;
             }
             index = j;
         }
-        
+
 
         radius_num = atof(radius);
         for (int j = 0, point = 0, minus = 0; j < index; j++) {
             if (radius[0] == '.') {
                 for (int k = 0; k < strlen(circle) + indexX + indexY + 4; k++)printf(" ");
                 printf("^\n");
-                printf("Error at collum %d: expected '<double>'\n", strlen(circle) + indexX + indexY + 5);
+                printf("Error at collum %ld: expected '<double>'\n", strlen(circle) + indexX + indexY + 5);
                 return 3;
             }
             if (radius[j] == '.')
@@ -210,13 +210,12 @@ int indexX = index;
             return 4;
         }
         printf("%s", object);
-        printf("x = %f\ny = %f\nradius = %f\nperimeter = %f\nsquare = %f", x_num, y_num, radius_num, 2*radius_num*pi, pi*pow(radius_num,2));
+        printf("x = %f\ny = %f\nradius = %f\nperimeter = %f\nsquare = %f", x_num, y_num, radius_num, 2 * radius_num * pi, pi * pow(radius_num, 2));
     }
-else {
+
+    else {
         printf("\nError at column 0: expected 'circle', 'triangle' or "
             "'polygon'");
         return 5;
     }
 }
-
-
